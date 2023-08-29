@@ -1,0 +1,50 @@
+### Recuperar todas las películas
+
+GET http://localhost:1234/movies
+
+### Recuperar una película por id
+GET http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+
+### Recuperar todas las películas por un género
+GET http://localhost:1234/movies?genre=Action
+
+### POST Crear una película
+POST http://localhost:1234/movies
+Content-Type: application/json
+
+{
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "year": 2001,
+    "director": "Peter Jackson",
+    "duration": 178,
+    "poster": "https://m.media-amazon.com/images/I/81hz68cCnQL._AC_UF1000,1000_QL80_.jpg",
+    "genre": [
+        "Adventure",
+        "Drama",
+        "Fantasy"
+    ],
+    "rate": 8.8,
+    "sql": "fdsfsjf"
+}
+
+### Actualizar una película
+
+PATCH http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+Content-Type: application/json
+
+{
+    "id": "caca",
+    "director": "Gonalo",
+    "year": 2022
+}
+
+//Diferencia put pust patch
+
+ // Idempotencia: Propiedad de realizar una acción determinada varias veces y aún así 
+ // conseguir siempre el mismo resultado que se obtendría al hacerlo una vez
+
+// Post: Crear un nuevo elemento/recurso en el servidor. /movies (Para crear no le hace falta id!!) NO ES IDEMPOTENTE, porque creas siempre un nuevo recurso
+
+// Put: Actualizar totalmente un elemento ya existente o crearlo si no existe. /movies/:id SI ES IDEMPOTENTE, por más veces que la hagas, el resultado siempre es el mismo
+
+// Patch: Actualizar parcialmente un elemento/recurso /movies/:id SI ES IDEMPOTENTE PERO NO ESTÁ GARANTIZADO, pero depende, ya que puede haber un campo updatedAt
